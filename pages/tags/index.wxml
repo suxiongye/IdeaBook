@@ -1,0 +1,14 @@
+<view>
+  标签列表
+  <view wx:for="{{tagList}}" wx:key="{{item.tagName}}">
+    <view style="color:{{item.tagColor}};" bindlongtap="editTag" data-id="{{item.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+      {{item.tagName}}</view>
+    <view class="{{item.open? 'themeList_show': 'themeList_hd'}}">
+      <view wx:for="{{item.themeList}}" wx:key="item.id"> {{item.themeName}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="addBtn">
+  <image src="../../images/icon/icon_add.png" bindtap="addTag"></image>
+</view>

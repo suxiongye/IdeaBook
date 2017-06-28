@@ -1,0 +1,27 @@
+<form bindsubmit="addTheme" bindreset="formReset">
+  <view>
+    <view>主题标题</view>
+    <input name="themeName" placeholder="请输入主题标题" bindinput="themeInput" />
+  </view>
+  <view>
+    主题标签：
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox" wx:for="{{tagList}}" wx:key="{{item.tagName}}">
+        <checkbox value="{{item.tagName}}" checked="{{item.checked}}" />{{item.tagName}}
+      </label>
+    </checkbox-group>
+  </view>
+  <view>主题图标</view>
+  <view>
+    <block wx:if="{{themeLogo}}">
+      <view>
+        <image src="{{themeLogo}}" data-src="{{themeLogo}}"></image>
+      </view>
+    </block>
+  </view>
+  <view bindtap="chooseThemeLogo">点击新增</view>
+  <view>
+    <button form-type="submit">Submit</button>
+    <button form-type="reset">Reset</button>
+  </view>
+</form>

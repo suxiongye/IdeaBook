@@ -1,0 +1,4 @@
+/* pages/tags/addTag/index.wxss */
+text{
+  color: #000;
+}

@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/themes/index",
+    "pages/themes/addTheme/index",
+    "pages/themes/editTheme/index",
+    "pages/themes/themeDetail/index",
+    "pages/tags/index",
+    "pages/tags/addTag/index",
+    "pages/tags/editTag/index",
+    "pages/tags/tagDetail/index",
+    "pages/ideas/index",
+    "pages/ideas/addIdea/index",
+    "pages/ideas/editIdea/index",
+    "pages/ideas/ideaDetail/index", 
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "IdeaBook",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/themes/index",
+        "text": "主题",
+        "iconPath": "images/icon/icon_themes.png",
+        "selectedIconPath": "images/icon/icon_themes_HL.png"
+      },
+      {
+        "pagePath": "pages/tags/index",
+        "text": "管理",
+        "iconPath": "images/icon/icon_add.png",
+        "selectedIconPath": "images/icon/icon_add_HL.png"
+      }
+    ]
+  }
+}

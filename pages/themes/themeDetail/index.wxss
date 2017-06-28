@@ -1,0 +1,17 @@
+.addBtn {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 60rpx;
+  bottom: 60rpx;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addBtn image {
+  width: 40rpx;
+  height: 40rpx;
+}

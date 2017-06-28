@@ -1,0 +1,13 @@
+<view>
+  <view>
+    主题笔记
+  </view>
+  <scroll-view scroll-y="true" wx:for="{{ideaList}}" wx:key="{{item}}">
+  <view bindlongtap="editIdea" data-id="{{item.id}}">
+  {{item.ideaTitle}}
+  </view>
+  </scroll-view>
+</view>
+<view class="addBtn">
+  <image src="../../../images/icon/icon_add.png" bindtap="addIdea"></image>
+</view>

@@ -1,0 +1,19 @@
+<view class="tagSelect">
+  <view class="tagList">标签：</view>
+  <view class="tagPicker">
+    <picker bindchange="bindPickerChange" value="{{index}}" range-key="tagName" range="{{tagList}}">
+      当前选择：{{tagList[selectedTag].tagName}}
+    </picker>
+  </view>
+</view>
+<scroll-view scroll-y="true">
+  <block wx:for="{{themeList}}" class="themeList" wx:key="{{item}}">
+    <view class="themeBlock"  data-id="{{item.id}}" bindlongtap="editTheme" bindtap="themeDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+      <image src="{{item.themeLogo}}" class="themeLogo"></image>
+      <view class="themeName">{{item.themeName}}</view>
+    </view>
+  </block>
+</scroll-view>
+<view class="addBtn">
+  <image src="../../images/icon/icon_add.png" bindtap="addTheme"></image>
+</view>

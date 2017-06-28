@@ -1,0 +1,16 @@
+<form bindsubmit="addTag" bindreset="formReset">
+  <view>
+    <view>标签名</view>
+    <input name="tagName" placeholder="请输入标签名" bindinput="tagInput" />
+  </view>
+  <view>标签颜色</view>
+  <view>
+     <picker bindchange="colorPickerChange" value="{{selectedColor}}" range="{{colorList}}">
+      当前选择：<text style="color:{{colorList[selectedColor]}};">{{colorList[selectedColor]}}</text>
+    </picker>
+  </view>
+  <view>
+    <button form-type="submit">Submit</button>
+    <button form-type="reset">Reset</button>
+  </view>
+</form>

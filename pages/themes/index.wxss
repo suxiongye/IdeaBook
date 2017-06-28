@@ -1,0 +1,40 @@
+.addBtn {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 60rpx;
+  bottom: 60rpx;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addBtn image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.themeList {
+  justify-content: center;
+  width: 100%;
+}
+
+.themeBlock {
+  width: 50%;
+  height: 400rpx;
+  position: relative;
+  float: left;
+  text-align: center;
+}
+
+.themeName{
+  vertical-align: middle;
+  text-align: center;
+}
+
+.themeLogo {
+  width: 100%;
+  height: 80%;
+}

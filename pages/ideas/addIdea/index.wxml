@@ -1,0 +1,16 @@
+<view>
+笔记标题：
+<input  bindinput="titleChange"/>
+笔记内容：
+<textarea bindinput="contentChange" />
+新增图片：
+ <view wx:for="{{ideaPicList}}">
+    <block>
+      <view>
+        <image src="{{item}}"></image>
+      </view>
+    </block>
+  </view>
+  <view bindtap="choosePic">点击新增</view>
+<button bindtap="addIdea">Add</button>
+</view>
