@@ -1,10 +1,17 @@
 <view>
   标签列表
-  <view wx:for="{{tagList}}" wx:key="{{item.tagName}}">
-    <view style="color:{{item.tagColor}};" bindlongtap="editTag" data-id="{{item.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
-      {{item.tagName}}</view>
-    <view class="{{item.open? 'themeList_show': 'themeList_hd'}}">
-      <view wx:for="{{item.themeList}}" wx:key="item.id"> {{item.themeName}}</view>
+  <view wx:for="{{tagList}}" wx:for-item="tag">
+    <view style="color:{{tag.tagColor}};" bindlongtap="editTag" data-id="{{tag.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+      {{tag.tagName}}</view>
+    <view class="{{tag.open? 'themeList_show': 'themeList_hd'}}">
+      <view wx:for="{{tag.themeList}}" wx:for-item="theme">
+        <view bindlongtap="deleteTheme" data-theme_id="{{theme.id}}" data-tag_id="{{tag.id}}">{{theme.themeName}}</view>
+      </view>
+      <picker bindchange="addTheme" value="{{index}}" range="{{themeList}}" range-key="themeName" data-id="{{tag.id}}">
+    <view class="picker">
+      增加主题
+    </view>
+  </picker>
     </view>
   </view>
 </view>

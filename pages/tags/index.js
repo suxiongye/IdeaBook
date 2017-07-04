@@ -82,7 +82,7 @@ Page({
   /**
    * 编辑标签
    */
-  editTag: function(event){
+  editTag: function (event) {
     wx.navigateTo({
       url: 'editTag/index?id=' + event.currentTarget.dataset.id,
     })
@@ -90,15 +90,15 @@ Page({
   /**
    * 单击标签
    */
-  clickTag: function(event){
+  clickTag: function (event) {
     if (this.touchEndTime - this.touchStartTime < 350) {
       //切换标签开关状态
       var tagList = this.data.tagList
-      if(tagList.length){
-        tagList.forEach((item)=>{
-          if (item.id == event.currentTarget.dataset.id){
+      if (tagList.length) {
+        tagList.forEach((item) => {
+          if (item.id == event.currentTarget.dataset.id) {
             item.open = !item.open
-          }else{
+          } else {
             //关闭其他
             item.open = false
           }
@@ -109,7 +109,33 @@ Page({
       })
       console.log(tagList)
     }
-  }
+  },
+  /**
+   *  长按删除
+   */
+  deleteTheme: function (event) {
+    var that = this
+    wx.showModal({
+      title: '移除主题',
+      content: '是否从该标签中移除主题',
+      success: function (res) {
+        if (res.confirm) {
+          deleteThemeToTag(event.target.dataset.theme_id, event.target.dataset.tag_id)
+          initData(that)
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  },
+
+  /**
+   * 新增主题
+   */
+  addTheme: function (event) {
+    addTheme(this.data.themeList[event.detail.value].id, event.currentTarget.dataset.id)
+    initData(this)
+  },
 })
 
 /**
@@ -117,9 +143,10 @@ Page({
  */
 function initData(page) {
   var tags = wx.getStorageSync("tags")
+  var themes = wx.getStorageSync("themes")
   var data = []
-  if(tags.length){
-    tags.forEach((item)=>{
+  if (tags.length) {
+    tags.forEach((item) => {
       data.push({
         id: item.id,
         tagName: item.tagName,
@@ -131,6 +158,18 @@ function initData(page) {
   }
   page.setData({
     tagList: data,
+  })
+  data = []
+  if (themes.length) {
+    themes.forEach((item) => {
+      data.push({
+        id: item.id,
+        themeName: item.themeName
+      })
+    })
+  }
+  page.setData({
+    themeList: data,
   })
   console.log(data)
 }
@@ -151,4 +190,44 @@ function getThemeListByTagId(id) {
     })
   }
   return themeList;
+}
+
+/**
+ * 删除主题与标签联系
+ */
+function deleteThemeToTag(themeId, tagId) {
+  var theme_tag = wx.getStorageSync("theme_tag")
+  var data = []
+  theme_tag.forEach((item) => {
+    if (themeId == item.themeId && tagId == item.tagId) {
+    } else {
+      data.push(item)
+    }
+  })
+  wx.setStorageSync("theme_tag", data)
+}
+
+/**
+ * 增加主题联系
+ */
+function addTheme(themeId, tagId) {
+  var theme_tag = wx.getStorageSync("theme_tag")
+  var data = []
+  var exist = false
+  if (theme_tag.length) {
+    theme_tag.forEach((item) => {
+      if (themeId == item.themeId && tagId == item.tagId) {
+        exist = true
+      }
+      data.push(item)
+    })
+  }
+  if (exist == false) {
+    data.push({
+      id: Date.now(),
+      themeId: themeId,
+      tagId: tagId
+    })
+  }
+  wx.setStorageSync("theme_tag", data)
 }

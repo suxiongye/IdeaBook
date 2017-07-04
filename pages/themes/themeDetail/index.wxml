@@ -3,7 +3,7 @@
     主题笔记
   </view>
   <scroll-view scroll-y="true" wx:for="{{ideaList}}" wx:key="{{item}}">
-  <view bindlongtap="editIdea" data-id="{{item.id}}">
+  <view bindlongtap="editIdea" data-id="{{item.id}}"  bindtap="ideaDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
   {{item.ideaTitle}}
   </view>
   </scroll-view>

@@ -1,16 +1,31 @@
 <view>
-笔记标题：
-<input  bindinput="titleChange"/>
-笔记内容：
-<textarea bindinput="contentChange" />
-新增图片：
- <view wx:for="{{ideaPicList}}">
+  笔记标题：
+  <input bindinput="titleChange" value="{{ideaTitle}}" /> 笔记内容：
+  <textarea bindinput="contentChange" value="{{ideaContent}}" /> 图片列表：
+  <view wx:for="{{ideaPicList}}">
     <block>
       <view>
         <image src="{{item}}"></image>
+        <button bindtap="removePic" data-index="{{index}}">删除</button>
       </view>
     </block>
   </view>
   <view bindtap="choosePic">点击新增</view>
-<button bindtap="addIdea">Add</button>
+  <view>
+    音频列表：
+    <view wx:for="{{ideaRecordList}}">
+      <view>音频{{index+1}}</view>
+      <view bindtap="play" data-id="{{item}}" wx:if="{{playing == false}}">点击播放</view>
+      <view bindtap="removeRec" data-id="{{item}}">移除</view>
+    </view>
+    <view bindtap="pause" data-id="{{item}}" wx:if="{{playing == true}}">点击暂停</view>
+    <view bindtap="stop" data-id="{{item}}" wx:if="{{playing == true}}">点击停止</view>
+    <view wx:if="{{recording == false}}" bindtap="startRecord">
+      点击开始录音
+    </view>
+    <view wx:if="{{recording == true}}" bindtap="stopRecord">
+      点击停止录音
+    </view>
+  </view>
+  <button bindtap="editIdea">确认修改</button>
 </view>

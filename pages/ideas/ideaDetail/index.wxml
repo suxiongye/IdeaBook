@@ -1,2 +1,18 @@
-<!--pages/ideas/ideaDetail/index.wxml-->
-<text>pages/ideas/ideaDetail/index.wxml</text>
+<view>{{ideaContent}}</view>
+图像列表：
+<view wx:for="{{ideaPicList}}" wx:key="{{item}}">
+  <view>
+    <image src="{{item}}"></image>
+  </view>
+</view>
+音频列表：
+<view wx:for="{{ideaRecordList}}" wx:key="{{item}}">
+  <view>
+    音频{{index+1}}
+  </view>
+  <view bindtap="play" data-id="{{item}}" wx:if="{{playing == false}}">点击播放</view>
+</view>
+<view bindtap="pause" data-id="{{item}}" wx:if="{{playing == true}}">点击暂停</view>
+<view bindtap="stop" data-id="{{item}}" wx:if="{{playing == true}}">点击停止</view>
+<button bindtap="editIdea">修改</button>
+<button bindtap="deleteIdea">删除</button>

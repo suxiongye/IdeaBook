@@ -67,6 +67,15 @@ Page({
 
   },
   /**
+   * 解决长按事件往下传递问题
+   */
+  bindTouchStart: function (e) {
+    this.touchStartTime = e.timeStamp
+  },
+  bindTouchEnd: function (e) {
+    this.touchEndTime = e.timeStamp
+  },
+  /**
    * 跳转到新增笔记
    */
   addIdea: function () {
@@ -77,10 +86,20 @@ Page({
   /**
    * 跳转到笔记修改
    */
-  editIdea: function(event){
+  editIdea: function (event) {
     wx.navigateTo({
       url: '../../ideas/editIdea/index?id=' + event.currentTarget.dataset.id,
     })
+  },
+  /**
+   * 跳转到笔记详情
+   */
+  ideaDetail: function (event) {
+    if (this.touchEndTime - this.touchStartTime < 350) {
+      wx.navigateTo({
+        url: '../../ideas/ideaDetail/index?id=' + event.currentTarget.dataset.id,
+      })
+    }
   }
 })
 
@@ -105,12 +124,12 @@ function initThemeById(page, id) {
 /**
  * 根据主题id获取对应ideaList
  */
-function initIdeaList(page, id){
+function initIdeaList(page, id) {
   var ideas = wx.getStorageSync("ideas")
   var data = []
-  if(ideas.length){
-    ideas.forEach((item)=>{
-      if(item.themeId == id){
+  if (ideas.length) {
+    ideas.forEach((item) => {
+      if (item.themeId == id) {
         data.push(item)
       }
     })
