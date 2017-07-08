@@ -15,16 +15,18 @@
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#fdd3e1",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#fdd3e1",
     "navigationBarTitleText": "IdeaBook",
-    "navigationBarTextStyle": "black"
+    
+    "backgroundTextStyle": "dark "
   },
   "tabBar": {
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",
     "borderStyle": "black",
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#fdd3e1",
     "list": [
       {
         "pagePath": "pages/themes/index",

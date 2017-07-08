@@ -3,10 +3,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorList: ['AliceBlue', 'AntiqueWhite'],
+    colorList: ['Blue', 'DarkOrange'],
     selectedColor: 0,
     tag: {
-      tagColor: 'AliceBlue',
+      tagColor: 'Blue',
     }
   },
 
@@ -68,7 +68,6 @@ Page({
   deleteTag: function (e) {
     deleteTagById(this.data.tag.id)
     wx.navigateBack()
-    console.log(this.data.tag.id)
   },
   /**
    * 设置标签名称

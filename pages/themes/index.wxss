@@ -1,3 +1,35 @@
+.tagPicker {
+  flex-direction: row;
+  display: flex;
+  margin: 0 0 10rpx 0;
+  background: #fdd3e1;
+}
+
+.tagPic {
+  width: 20%;
+  height: 100rpx;
+  padding-left: 120rpx;
+}
+
+.tagPic image {
+  width: 100%;
+  height: 100%;
+}
+
+.tagContent {
+  width: fit-content;
+  padding: 0 30rpx;
+  margin: 10rpx;
+  text-align: center;
+  background: #fffafa;
+   border-radius: 20rpx;
+  opacity: 0.6;
+}
+
+.tagText {
+  line-height: 100rpx;
+}
+
 .addBtn {
   width: 80rpx;
   height: 80rpx;
@@ -19,17 +51,20 @@
 .themeList {
   justify-content: center;
   width: 100%;
+  height: 950rpx;
 }
 
 .themeBlock {
   width: 50%;
-  height: 400rpx;
+  height: auto;
   position: relative;
   float: left;
   text-align: center;
+  left: 10rpx;
+  right: 40rpx;
 }
 
-.themeName{
+.themeName {
   vertical-align: middle;
   text-align: center;
 }

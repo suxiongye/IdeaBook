@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    colorList: ['AliceBlue','AntiqueWhite'],
+    colorList: ['Blue', 'DarkOrange'],
     selectedColor: 0,
     tag:{
       tagColor: 'AliceBlue',

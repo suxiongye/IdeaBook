@@ -1,19 +1,24 @@
-<view class="tagSelect">
-  <view class="tagList">标签：</view>
-  <view class="tagPicker">
+<view class="tagPicker">
+  <view class="tagPic">
+    <image src="icon_tag.png" mode="aspectFit"></image>
+  </view>
+  <view class="tagContent">
     <picker bindchange="bindPickerChange" value="{{index}}" range-key="tagName" range="{{tagList}}">
-      当前选择：{{tagList[selectedTag].tagName}}
+      <view style="color: {{tagList[selectedTag].tagColor}};" class="tagText">{{tagList[selectedTag].tagName}}</view>
     </picker>
   </view>
 </view>
-<scroll-view scroll-y="true">
-  <block wx:for="{{themeList}}" class="themeList" wx:key="{{item}}">
-    <view class="themeBlock"  data-id="{{item.id}}" bindlongtap="editTheme" bindtap="themeDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
-      <image src="{{item.themeLogo}}" class="themeLogo"></image>
-      <view class="themeName">{{item.themeName}}</view>
+<view>
+  <scroll-view scroll-y="true" enable-back-to-top="true" class="themeList">
+    <view wx:for="{{themeList}}" wx:key="{{item}}">
+      <view class="themeBlock" data-id="{{item.id}}" bindlongtap="editTheme" bindtap="themeDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+        <image src="{{item.themeLogo}}" class="themeLogo" mode="widthFix"></image>
+        <view class="themeName">{{item.themeName}}</view>
+      </view>
     </view>
-  </block>
-</scroll-view>
+  </scroll-view>
+</view>
+
 <view class="addBtn">
   <image src="../../images/icon/icon_add.png" bindtap="addTheme"></image>
 </view>
