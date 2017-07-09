@@ -1,14 +1,15 @@
 .tagPicker {
   flex-direction: row;
   display: flex;
-  margin: 0 0 10rpx 0;
-  background: #fdd3e1;
+  height: 120rpx;
+  border-top: 2rpx rgba(117, 110, 115, 0.3) solid;
+  background: -webkit-linear-gradient(top, #f9f7ff, #fff);
 }
 
 .tagPic {
-  width: 20%;
+  width: 18%;
   height: 100rpx;
-  padding-left: 120rpx;
+  margin: 10rpx;
 }
 
 .tagPic image {
@@ -17,17 +18,26 @@
 }
 
 .tagContent {
-  width: fit-content;
-  padding: 0 30rpx;
+  width: 75%;
+  height: 100rpx;
   margin: 10rpx;
-  text-align: center;
-  background: #fffafa;
-   border-radius: 20rpx;
-  opacity: 0.6;
+  white-space: nowrap;
 }
 
-.tagText {
-  line-height: 100rpx;
+.tagItem {
+  width: fit-content;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  line-height: 80rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-top: 10rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+  text-align: center;
+  background: #edfffb;
+  font-size: 40rpx;
+  opacity: 0.6;
 }
 
 .addBtn {
@@ -49,7 +59,6 @@
 }
 
 .themeList {
-  justify-content: center;
   width: 100%;
   height: 950rpx;
 }
@@ -72,4 +81,10 @@
 .themeLogo {
   width: 100%;
   height: 80%;
+}
+
+.container {
+  padding: 0;
+  border-top: 2rpx rgba(117, 110, 115, 0.3) solid;
+  background: #fff;
 }

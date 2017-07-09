@@ -6,6 +6,9 @@ Page({
   },
   themeInput: function (e) {
     this.data.themeName = e.detail.value
+    this.setData({
+      themeName : this.data.themeName,
+    })
   },
   /**
    * 选择主题图片
@@ -20,7 +23,6 @@ Page({
         page.setData({
           themeLogo : res.tempFilePaths
         })
-        console.log(res.tempFilePaths)
       },
     })
   },
@@ -31,7 +33,6 @@ Page({
     this.setData({
       themeTags: e.detail.value
     })
-    console.log(e.detail.value)
   },
   /**
    * 增加主题
@@ -41,7 +42,10 @@ Page({
     setTheme(this)
     wx.navigateBack()
   },
-  onShow: function(){
+  /**
+   * 运行时加载，如果放在onshow，会导致choossImage时重置标签
+   */
+  onLoad: function(){
     initTags(this)
   }
 })

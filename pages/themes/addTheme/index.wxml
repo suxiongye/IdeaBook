@@ -6,11 +6,12 @@
   <view>
     主题标签：
     <checkbox-group bindchange="checkboxChange">
-      <label class="checkbox" wx:for="{{tagList}}" wx:key="{{item.tagName}}">
+      <label class="checkbox" wx:for="{{tagList}}" wx:key="{{id}}">
         <checkbox value="{{item.tagName}}" checked="{{item.checked}}" />{{item.tagName}}
       </label>
     </checkbox-group>
   </view>
+  {{themeTags}}
   <view>主题图标</view>
   <view>
     <block wx:if="{{themeLogo}}">

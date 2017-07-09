@@ -15,8 +15,8 @@
     "pages/logs/logs"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#fdd3e1",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#F9F7FF",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#fdd3e1",
     "navigationBarTitleText": "IdeaBook",
     
@@ -26,7 +26,7 @@
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",
     "borderStyle": "black",
-    "backgroundColor": "#fdd3e1",
+    "backgroundColor": "#F9F7FF",
     "list": [
       {
         "pagePath": "pages/themes/index",

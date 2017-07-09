@@ -39,9 +39,13 @@ Page({
       url: 'editTheme/index?id=' + event.currentTarget.dataset.id,
     })
   },
-  bindPickerChange: function (event) {
+  
+  /**
+   * 点击标签事件
+   */
+  clickTag: function(event){
     this.setData({
-      selectedTag: event.detail.value
+      selectedTag: event.currentTarget.dataset.id
     })
     initThemeByTag(this)
   }

@@ -1,14 +1,14 @@
 <view class="tagPicker">
   <view class="tagPic">
-    <image src="icon_tag.png" mode="aspectFit"></image>
+    <image src="./icon_tag.png" mode="aspectFit"></image>
   </view>
-  <view class="tagContent">
-    <picker bindchange="bindPickerChange" value="{{index}}" range-key="tagName" range="{{tagList}}">
-      <view style="color: {{tagList[selectedTag].tagColor}};" class="tagText">{{tagList[selectedTag].tagName}}</view>
-    </picker>
-  </view>
+  <scroll-view class="tagContent" scroll-x="true">
+    <view class="tagItem" wx:for="{{tagList}}" wx:for-item="tag" wx:key="tag.tagName">
+      <view bindtap="clickTag" data-id="{{index}}" style="color:{{tag.tagColor}};">{{tag.tagName}}</view>
+    </view>
+  </scroll-view>
 </view>
-<view>
+<view class="container">
   <scroll-view scroll-y="true" enable-back-to-top="true" class="themeList">
     <view wx:for="{{themeList}}" wx:key="{{item}}">
       <view class="themeBlock" data-id="{{item.id}}" bindlongtap="editTheme" bindtap="themeDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">

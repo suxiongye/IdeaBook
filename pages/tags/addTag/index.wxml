@@ -1,4 +1,4 @@
-<form bindsubmit="editTag" bindreset="formReset">
+<form bindsubmit="addTag" bindreset="formReset">
   <view>
     <view>标签名</view>
     <input name="tagName" placeholder="请输入标签名" bindinput="tagInput" />
