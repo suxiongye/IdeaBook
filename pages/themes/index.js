@@ -7,7 +7,16 @@ Page({
     })
   },
   onLoad: function () {
-    initData(this)
+    var tip = wx.getStorageSync("themeTip")
+    /*
+    wx.showModal({
+      title: '提示',
+      content: '长按主题图标可以进行编辑',
+      showCancel: false,
+      confirmText: '我知道了',
+      confirmColor: ''
+    })
+    */
   },
   onShow: function () {
     initData(this)
@@ -39,11 +48,11 @@ Page({
       url: 'editTheme/index?id=' + event.currentTarget.dataset.id,
     })
   },
-  
+
   /**
    * 点击标签事件
    */
-  clickTag: function(event){
+  clickTag: function (event) {
     this.setData({
       selectedTag: event.currentTarget.dataset.id
     })
@@ -56,8 +65,8 @@ Page({
  */
 function initData(page) {
   var themes = wx.getStorageSync("themes")
-  var allTag = { tagName: "所有标签" }
-  var noTag = { tagName: "无标签" }
+  var allTag = { tagName: "所有标签", tagColor: "rgb(246, 246, 252)" }
+  var noTag = { tagName: "无标签", tagColor: "rgb(246, 246, 252)" }
   var tagList = []
   tagList.push(allTag)
   var tags = wx.getStorageSync("tags")

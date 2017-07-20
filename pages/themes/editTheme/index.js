@@ -3,6 +3,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    disabled: false
   },
 
   /**
@@ -60,20 +61,46 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+   * 删除主题
+   */
   deleteTheme: function (e) {
-    deleteThemeById(this.data.id)
-    wx.navigateBack()
+    var page = this
+    wx.showModal({
+      title: '删除主题',
+      content: '删除主题后不可恢复，是否确认删除',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '',
+      confirmText: '确定',
+      confirmColor: '',
+      success: function (res) {
+        if (res.confirm) {
+          deleteThemeById(page.data.id)
+          wx.navigateBack()
+        }
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   /**
    * 确认更新
    */
   editTheme: function (e) {
+    if (!isLegal(this)) {
+      return
+    }
     setTheme(this)
     wx.navigateBack()
   },
 
   themeInput: function (e) {
     this.data.themeName = e.detail.value
+    this.setData({
+      themeName: this.data.themeName,
+    })
+    isLegal(this)
   },
   chooseThemeLogo: function (e) {
     var page = this
@@ -85,7 +112,7 @@ Page({
         page.setData({
           themeLogo: res.tempFilePaths
         })
-        console.log(res.tempFilePaths)
+        isLegal(page)
       },
     })
   },
@@ -98,6 +125,16 @@ Page({
       themeTags: e.detail.value
     })
   },
+  /**
+   * 预览图片
+   */
+  previewImage: function (e) {
+    var current = e.target.dataset.src
+    wx.previewImage({
+      current: current,
+      urls: this.data.themeLogo
+    })
+  }
 })
 
 function setThemeById(page, id) {
@@ -108,7 +145,8 @@ function setThemeById(page, id) {
         page.setData({
           id: id,
           themeName: item.themeName,
-          themeLogo: item.themeLogo
+          themeLogo: item.themeLogo,
+          originThemeName: item.themeName
         })
       }
     })
@@ -228,12 +266,14 @@ function initTags(page) {
 
   //初始化
   var tagList = []
+  var themeTags = []
   if (tags.length) {
     tags.forEach((item) => {
       var tagCheck = false
       for (i = 0; i < checkTagIdList.length; i++) {
         if (item.id == checkTagIdList[i]) {
           tagCheck = true
+          themeTags.push(item.tagName)
           tagList.push({
             id: item.id,
             tagColor: item.tagColor,
@@ -243,7 +283,7 @@ function initTags(page) {
         }
       }
       //如果该标签没有被选中
-      if(!tagCheck){
+      if (!tagCheck) {
         tagList.push({
           id: item.id,
           tagColor: item.tagColor,
@@ -253,8 +293,55 @@ function initTags(page) {
       }
     })
   }
-  console.log(tagList)
   page.setData({
+    themeTags: themeTags,
     tagList: tagList
   })
+}
+
+/**
+ * 判断增加主题是否符合要求
+ */
+function isLegal(page) {
+  var themeName = page.data.themeName
+  var themeLogo = page.data.themeLogo
+  var originThemeName = page.data.originThemeName
+  //判断字段是否合法
+  if (!themeName) {
+    page.setData({
+      themeNameError: '',
+      disabled: true
+    })
+    return false;
+  }
+  //判断名称是否重复
+  var themes = wx.getStorageSync("themes")
+  var conflict = false;
+  if (themes.length) {
+    themes.forEach((item) => {
+      if (item.themeName != originThemeName && item.themeName == themeName) {
+        conflict = true;
+      }
+    })
+  }
+  if (conflict == true) {
+    page.setData({
+      themeNameError: '该主题已存在',
+      disabled: true
+    })
+    return false;
+  }
+  //判断图片是否存在
+  if (!themeLogo) {
+    page.setData({
+      themeNameError: '',
+      disabled: true
+    })
+    return false
+  }
+  page.setData({
+    themeNameError: '',
+    disabled: false
+  })
+  return true;
 }

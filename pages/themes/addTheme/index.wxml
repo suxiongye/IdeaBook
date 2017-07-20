@@ -1,28 +1,29 @@
-<form bindsubmit="addTheme" bindreset="formReset">
-  <view>
-    <view>主题标题</view>
-    <input name="themeName" placeholder="请输入主题标题" bindinput="themeInput" />
+<form bindsubmit="addTheme" bindreset="formReset" class="themeForm">
+  <view class="themeTitleItem">
+    <view class="themeTitle">标题</view>
+    <input class="themeTitleInput" name="themeName" placeholder="请输入主题的标题" bindinput="themeInput" />
+    <view wx:if="themeNameError">{{themeNameError}}</view>
   </view>
-  <view>
-    主题标签：
-    <checkbox-group bindchange="checkboxChange">
-      <label class="checkbox" wx:for="{{tagList}}" wx:key="{{id}}">
+  <view class="tagItem" wx:if="{{tagList}}">
+    <view class="tagTitle">标签</view>
+    <checkbox-group bindchange="checkboxChange" class="tagGroup">
+      <view wx:for="{{tagList}}" wx:key="{{id}}" style="color:{{item.tagColor}};" class="tagContent">
         <checkbox value="{{item.tagName}}" checked="{{item.checked}}" />{{item.tagName}}
-      </label>
+      </view>
     </checkbox-group>
   </view>
-  {{themeTags}}
-  <view>主题图标</view>
-  <view>
-    <block wx:if="{{themeLogo}}">
-      <view>
-        <image src="{{themeLogo}}" data-src="{{themeLogo}}"></image>
-      </view>
-    </block>
+  <view class="logoItem">
+    <view wx:if="{{!themeLogo}}" class="logoTitle">图标<text style="font-size:30rpx;">(单击选择一张图片作为主题图标)</text></view>
+    <view wx:if="{{themeLogo}}" class="logoTitle">图标<text style="font-size:30rpx;">(单击图片可预览)</text></view>
+    <view wx:if="{{themeLogo}}" class="logoContent">
+      <image src="{{themeLogo}}" data-src="{{themeLogo}}" mode="widthFix" bindtap="previewImage"></image>
+    </view>
+    <view class="weui-uploader__input-box {{themeLogo? 'addBtn':''}}">
+      <view class="weui-uploader__input" bindtap="chooseThemeLogo"></view>
+    </view>
   </view>
-  <view bindtap="chooseThemeLogo">点击新增</view>
-  <view>
-    <button form-type="submit">Submit</button>
-    <button form-type="reset">Reset</button>
+  <view class="btnBar">
+    <button form-type="reset" class="resetBtn">Reset</button>
+    <button form-type="submit" class="submitBtn" disabled="{{disabled}}">Submit</button>
   </view>
 </form>

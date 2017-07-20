@@ -3,7 +3,8 @@
   display: flex;
   height: 120rpx;
   border-top: 2rpx rgba(117, 110, 115, 0.3) solid;
-  background: -webkit-linear-gradient(top, #f9f7ff, #fff);
+  border-bottom: 2rpx rgba(117, 110, 115, 0.3) solid;
+  background: white;
 }
 
 .tagPic {
@@ -28,49 +29,46 @@
   width: fit-content;
   padding-left: 25rpx;
   padding-right: 25rpx;
-  line-height: 80rpx;
+  line-height: 60rpx;
   margin-left: 15rpx;
   margin-right: 15rpx;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
   border-radius: 20rpx;
   display: inline-block;
   text-align: center;
   background: #edfffb;
-  font-size: 40rpx;
+  color: white;
+  font-size: 30rpx;
   opacity: 0.6;
-}
-
-.addBtn {
-  width: 80rpx;
-  height: 80rpx;
-  position: fixed;
-  right: 60rpx;
-  bottom: 60rpx;
-  border: 1px solid #000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.addBtn image {
-  width: 40rpx;
-  height: 40rpx;
 }
 
 .themeList {
   width: 100%;
-  height: 950rpx;
+  position: absolute;
+  top: 130rpx;
+  bottom: 0;
+  padding: 10rpx;
 }
 
 .themeBlock {
-  width: 50%;
+  width: 45%;
   height: auto;
   position: relative;
   float: left;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
   text-align: center;
   left: 10rpx;
   right: 40rpx;
+  font-size: 40rpx; 
+  font-weight: bolder;
+  color: rgba(255, 24, 103, 1);
+}
+
+.themeBlock image{
+  border-radius: 50rpx;
+  box-shadow: 7rpx 7rpx 3rpx rgba(224,224, 225, 0.8);
+  margin-bottom: 10rpx;
 }
 
 .themeName {
@@ -83,8 +81,20 @@
   height: 80%;
 }
 
-.container {
-  padding: 0;
-  border-top: 2rpx rgba(117, 110, 115, 0.3) solid;
-  background: #fff;
+.addBtn {
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  right: 50rpx;
+  bottom: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 24, 103, 0.9);
+}
+
+.addBtn image {
+  width: 40rpx;
+  height: 40rpx;
 }

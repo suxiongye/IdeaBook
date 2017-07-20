@@ -1,20 +1,26 @@
+.container{
+  width: 100%;
+  border: 1px #000 solid;
+}
+
 .addBtn {
   width: 80rpx;
   height: 80rpx;
   position: fixed;
   right: 60rpx;
   bottom: 60rpx;
-  border: 1px solid #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 24, 103, 0.9);
 }
 
 .addBtn image {
   width: 40rpx;
   height: 40rpx;
 }
+
 .themeList_hd{
   height: 0;
   overflow: hidden;

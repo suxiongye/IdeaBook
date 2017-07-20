@@ -1,5 +1,6 @@
-<view>
+<view class="container">
   标签列表
+  <scroll-view scroll-y="true">
   <view wx:for="{{tagList}}" wx:for-item="tag">
     <view style="color:{{tag.tagColor}};" bindlongtap="editTag" data-id="{{tag.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
       {{tag.tagName}}</view>
@@ -14,6 +15,7 @@
   </picker>
     </view>
   </view>
+  </scroll-view>
 </view>
 
 <view class="addBtn">

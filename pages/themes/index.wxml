@@ -1,10 +1,10 @@
 <view class="tagPicker">
   <view class="tagPic">
-    <image src="./icon_tag.png" mode="aspectFit"></image>
+    <image src="../../images/icon/icon_tag.png" mode="aspectFit"></image>
   </view>
   <scroll-view class="tagContent" scroll-x="true">
-    <view class="tagItem" wx:for="{{tagList}}" wx:for-item="tag" wx:key="tag.tagName">
-      <view bindtap="clickTag" data-id="{{index}}" style="color:{{tag.tagColor}};">{{tag.tagName}}</view>
+    <view class="tagItem" wx:for="{{tagList}}" wx:for-item="tag" wx:key="tag.tagName" style="background:{{tag.tagColor}};">
+      <view bindtap="clickTag" data-id="{{index}}" style="{{tag.tagName=='所有标签'||tag.tagName=='无标签'? 'color:#767484;':''}}">{{tag.tagName}}</view>
     </view>
   </scroll-view>
 </view>

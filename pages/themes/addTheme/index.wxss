@@ -1,0 +1,117 @@
+@import "../../common/lib/weui.wxss";
+
+.themeForm {
+  position: absolute;
+  width: 100%;
+  top: 0rpx;
+  bottom: 120rpx;
+  overflow: auto;
+}
+
+.themeTitleItem {
+  height: 200rpx;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+
+.themeTitle {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  line-height: 40rpx;
+  font-weight: bolder;
+  color: rgb(255, 24, 103);
+}
+
+.themeTitleInput {
+  margin-top: 10rpx;
+  line-height: 40rpx;
+  border-bottom: 2rpx rgb(255, 24, 103) solid;
+}
+
+.tagItem {
+  height: 200rpx;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+}
+
+.tagTitle {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  line-height: 40rpx;
+  font-weight: bolder;
+  color: rgb(255, 24, 103);
+}
+
+.tagGroup {
+  width: 100%;
+}
+
+.tagContent {
+  margin-right: 30rpx;
+  float: left;
+}
+
+.logoItem {
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  padding: 10rpx;
+}
+
+.logoTitle {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  line-height: 40rpx;
+  font-weight: bolder;
+  color: rgb(255, 24, 103);
+}
+
+.logoContent{
+  width: 50%;
+  float: left;
+}
+.addBtn{
+  margin-right: 100rpx;
+  float: right;
+}
+
+.logoContent image{
+  width: 100%;
+}
+
+.btnBar {
+  position: fixed;
+  bottom: 20rpx;
+  width: 100%;
+}
+
+.resetBtn {
+  width: 45%;
+  height: 80rpx;
+  float: left;
+  margin: 15rpx;
+  color: rgb(134, 129, 158);
+  font-size: 40rpx;
+  font-weight: bolder;
+  line-height: 80rpx;
+  background: rgb(255, 255, 255);
+  box-shadow: 7rpx 7rpx 3rpx rgba(214, 214, 214, 0.8);
+}
+
+.submitBtn {
+  width: 45%;
+  height: 80rpx;
+  float: right;
+  margin: 15rpx;
+  color: rgb(255, 255, 255);
+  font-size: 40rpx;
+  font-weight: bolder;
+  line-height: 80rpx;
+  background: rgb(255, 24, 103);
+  box-shadow: 7rpx 7rpx 3rpx rgba(214, 214, 214, 0.8);
+}
