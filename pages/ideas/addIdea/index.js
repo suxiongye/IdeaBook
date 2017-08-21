@@ -112,17 +112,28 @@ Page({
   * 根据下标删除图片
   */
   removePic: function (event) {
-    console.log(event.currentTarget.dataset.index)
-    var index = event.currentTarget.dataset.index
-    var data = []
-    for (var i = 0; i < this.data.ideaPicList.length; i++) {
-      if (i != index) {
-        data.push(this.data.ideaPicList[i])
+    var page = this
+    wx.showModal({
+      title: '删除图片',
+      content: '是否移除图片？',
+      success: function(res){
+        if(res.confirm){
+          var index = event.currentTarget.dataset.index
+          var data = []
+          for (var i = 0; i < page.data.ideaPicList.length; i++) {
+            if (i != index) {
+              data.push(page.data.ideaPicList[i])
+            }
+          }
+          page.setData({
+            ideaPicList: data
+          })
+        }else if(res.cancel){
+          
+        }
       }
-    }
-    this.setData({
-      ideaPicList: data
     })
+   
   },
 
   /**
@@ -135,8 +146,8 @@ Page({
     this.setData({ recording: true })
     wx.startRecord({
       success: function (res) {
-        if(ideaRecordList && ideaRecordList.length){
-          ideaRecordList.forEach((item)=>{
+        if (ideaRecordList && ideaRecordList.length) {
+          ideaRecordList.forEach((item) => {
             data.push(item)
           })
         }
@@ -163,11 +174,11 @@ Page({
   /**
    * 移除录音
    */
-  removeRec: function(event){
+  removeRec: function (event) {
     var data = []
     var recordList = this.data.ideaRecordList
-    recordList.forEach((item)=>{
-      if(item != event.currentTarget.dataset.id){
+    recordList.forEach((item) => {
+      if (item != event.currentTarget.dataset.id) {
         data.push(item)
       }
     })
@@ -178,7 +189,7 @@ Page({
   /**
    * 播放
    */
-  play: function(event){
+  play: function (event) {
     var that = this
     this.setData({
       playing: true
@@ -195,7 +206,7 @@ Page({
   /**
    * 暂停
    */
-  pause: function(event){
+  pause: function (event) {
     wx.pauseVoice()
     this.setData({
       playing: false
@@ -204,7 +215,7 @@ Page({
   /**
    * 停止
    */
-  stop: function(event){
+  stop: function (event) {
     wx.stopVoice()
     this.setData({
       playing: false,
@@ -219,7 +230,19 @@ Page({
     })
     setIdea(this)
     wx.navigateBack()
-  }
+  },
+  /**
+   * 表格重置
+   */
+  formReset: function () {
+    this.setData({
+      ideaTitle: '',
+      ideaContent: '',
+      ideaPicList: '',
+      ideaRecordList: ''
+    })
+    isLegal(this)
+  },
 })
 
 /**

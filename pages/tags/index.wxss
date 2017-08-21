@@ -1,14 +1,73 @@
-.container{
+.container {
   width: 100%;
-  border: 1px #000 solid;
+  position: absolute;
+  bottom: 0rpx;
+}
+
+.tagListTitle {
+  height: 100rpx;
+  width: 100%;
+  position: absolute;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  text-align: center;
+  top: 0rpx;
+  color: rgb(76, 74, 84);
+}
+
+.tagName {
+  line-height: 100rpx;
+  width: 95%;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  color: #fff;
+  opacity: 0.6;
+  border-radius: 10rpx;
+}
+
+.tagName_show {
+  opacity: 0.4;
+  transition: opacity .4s;
+}
+
+.themeList_hd {
+  height: 0;
+  overflow: hidden;
+}
+
+.themeList_show {
+  height: auto;
+  margin-bottom: 20rpx;
+}
+
+.themeItem {
+  height: 80rpx;
+  width: 95%;
+  margin-left: 10rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx rgb(169, 167, 197) solid;
+}
+
+.addTheme {
+  height: 100rpx;
+  width: 80%;
+  margin-left: 10rpx;
+  line-height: 100rpx;
+}
+
+.container scroll-view {
+  position: absolute;
+  top: 120rpx;
+  bottom: 0rpx;
 }
 
 .addBtn {
   width: 80rpx;
   height: 80rpx;
   position: fixed;
-  right: 60rpx;
-  bottom: 60rpx;
+  right: 50rpx;
+  bottom: 50rpx;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -19,12 +78,4 @@
 .addBtn image {
   width: 40rpx;
   height: 40rpx;
-}
-
-.themeList_hd{
-  height: 0;
-  overflow: hidden;
-}
-.themeList_show{
-  height: auto;
 }

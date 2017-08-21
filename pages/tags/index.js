@@ -107,7 +107,6 @@ Page({
       this.setData({
         tagList: tagList
       })
-      console.log(tagList)
     }
   },
   /**
@@ -133,6 +132,9 @@ Page({
    * 新增主题
    */
   addTheme: function (event) {
+    this.setData({
+      selectedTagId: event.currentTarget.dataset.id
+    })
     addTheme(this.data.themeList[event.detail.value].id, event.currentTarget.dataset.id)
     initData(this)
   },
@@ -145,13 +147,21 @@ function initData(page) {
   var tags = wx.getStorageSync("tags")
   var themes = wx.getStorageSync("themes")
   var data = []
+  var selectedTagId
+  if(page.data.selectedTagId){
+    selectedTagId = page.data.selectedTagId
+  }
   if (tags.length) {
     tags.forEach((item) => {
+      var open = false;
+      if(selectedTagId && selectedTagId == item.id){
+        open = true;
+      }
       data.push({
         id: item.id,
         tagName: item.tagName,
         tagColor: item.tagColor,
-        open: false,
+        open: open,
         themeList: getThemeListByTagId(item.id)
       })
     })
@@ -171,7 +181,6 @@ function initData(page) {
   page.setData({
     themeList: data,
   })
-  console.log(data)
 }
 /**
  * 根据tagId获取主题列表

@@ -1,9 +1,21 @@
 Page({
   data: {
   },
-  addTheme: function () {
-    wx.navigateTo({
-      url: 'addTheme/index'
+  addMenu: function () {
+    wx.showActionSheet({
+      itemList: ["增加主题", "增加标签"],
+      success: function (res) {
+        if (res.tapIndex == 0) {
+          wx.navigateTo({
+            url: 'addTheme/index'
+          })
+        }
+        else if (res.tapIndex == 1) {
+          wx.navigateTo({
+            url: '../tags/addTag/index'
+          })
+        }
+      }
     })
   },
   onLoad: function () {
@@ -65,14 +77,19 @@ Page({
  */
 function initData(page) {
   var themes = wx.getStorageSync("themes")
-  var allTag = { tagName: "所有标签", tagColor: "rgb(246, 246, 252)" }
-  var noTag = { tagName: "无标签", tagColor: "rgb(246, 246, 252)" }
+  var allTag = { tagName: "所有标签", tagColor: "rgb(246, 246, 252)", selected: true }
+  var noTag = { tagName: "无标签", tagColor: "rgb(246, 246, 252)", selected: false }
   var tagList = []
   tagList.push(allTag)
   var tags = wx.getStorageSync("tags")
   if (tags.length) {
     tags.forEach((item) => {
-      tagList.push(item)
+      tagList.push({
+        id: item.id,
+        tagName: item.tagName,
+        tagColor: item.tagColor,
+        selected: false
+      })
     })
   }
   tagList.push(noTag)

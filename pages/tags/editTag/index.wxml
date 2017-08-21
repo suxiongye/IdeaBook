@@ -1,16 +1,19 @@
 <form bindsubmit="editTag" bindreset="formReset">
-  <view>
-    <view>标签名</view>
-    <input name="tagName" placeholder="请输入标签名" value='{{tag.tagName}}' bindinput="tagInput" />
+  <view class="tagTitleItem">
+    <view class="tagTitle">标签名</view>
+    <input class="tagTitleInput" placeholder="请输入标签名" value='{{tag.tagName}}' bindinput="tagInput" />
+    <view wx:if="{{tagNameError}}" style="color:red; margin-top:10rpx;">{{tagNameError}}</view>
   </view>
-  <view>标签颜色</view>
-  <view>
-     <picker bindchange="colorPickerChange" value="{{selectedColor}}" range="{{colorList}}">
-      当前选择：<text style="color:{{colorList[selectedColor]}};">{{colorList[selectedColor]}}</text>
-    </picker>
+  <view class="tagTitleItem">
+    <view class="tagTitle">标签颜色</view>
+    <view class="tagColor">
+      <picker bindchange="colorPickerChange" value="{{selectedColor}}" range="{{colorList}}">
+        <view class="tagColorItem" hover-class="tagColorItemHover" style="color:{{colorList[selectedColor]}};">{{colorList[selectedColor]}}</view>
+      </picker>
+    </view>
   </view>
-  <view>
-    <button form-type="submit">Submit</button>
-    <button bindtap="deleteTag">Delete</button>
+  <view class="btnBar">
+    <button form-type="submit" class="submitBtn" hover-class="submitBtnHover" disabled="{{btnDisabled}}">Submit</button>
+    <button bindtap="deleteTag" class="deleteBtn" hover-class="deleteBtnHover">Delete</button>
   </view>
 </form>

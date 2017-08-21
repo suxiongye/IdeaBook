@@ -1,4 +1,88 @@
-/* pages/tags/addTag/index.wxss */
-text{
-  color: #000;
+.tagTitleItem {
+  height: 200rpx;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+
+.tagTitle {
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+  line-height: 40rpx;
+  font-weight: bolder;
+  color: rgb(255, 24, 103);
+}
+
+.tagTitleInput {
+  margin-top: 10rpx;
+  line-height: 40rpx;
+  border-bottom: 2rpx rgb(255, 24, 103) solid;
+}
+ 
+.tagColor {
+  height: 60rpx;
+}
+
+.tagColorItem {
+  min-width: 30%;
+  width: fit-content;
+  padding-left: 10rpx;
+  padding-right: 10rpx; 
+  line-height: 60rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+  text-align: center;
+  background: #edfffb;
+  color: white;
+  font-size: 40rpx;
+  box-shadow: 3rpx 4rpx 2rpx rgba(214, 214, 214, 0.8);
+}
+
+.tagColorItemHover {
+  font-size: 45rpx;
+  font-weight: bolder;
+  box-shadow: 1rpx 2rpx 1rpx rgba(214, 214, 214, 0.8);
+}
+
+.btnBar {
+  position: fixed;
+  bottom: 20rpx;
+  width: 100%;
+}
+
+.resetBtn {
+  width: 45%;
+  height: 80rpx;
+  float: left;
+  margin: 15rpx;
+  color: rgb(134, 129, 158);
+  font-size: 40rpx;
+  font-weight: bolder;
+  line-height: 80rpx;
+  background: rgb(255, 255, 255);
+  box-shadow: 7rpx 7rpx 3rpx rgba(214, 214, 214, 0.8);
+}
+
+.resetBtnHover {
+  font-size: 45rpx;
+  box-shadow: 3rpx 3rpx 1rpx rgba(214, 214, 214, 1);
+}
+
+.submitBtn {
+  width: 45%;
+  height: 80rpx;
+  float: right;
+  margin: 15rpx;
+  color: rgb(255, 255, 255);
+  font-size: 40rpx;
+  font-weight: bolder;
+  line-height: 80rpx;
+  background: rgb(255, 24, 103);
+  box-shadow: 7rpx 7rpx 3rpx rgba(214, 214, 214, 0.8);
+}
+
+.submitBtnHover {
+  font-size: 45rpx;
+  box-shadow: 3rpx 3rpx 1rpx rgba(214, 214, 214, 1);
 }

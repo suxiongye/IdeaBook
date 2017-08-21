@@ -1,12 +1,16 @@
-<view>
-  <view>
-    主题笔记
+<view class="container">
+  <view class="ideaContainer">
+    <view class="ideaListTitle">
+      笔记列表
+    </view>
+    <scroll-view scroll-y="true">
+      <view wx:for="{{ideaList}}" wx:key="{{item}}">
+        <view class="ideaItem" bindlongtap="editIdea" data-id="{{item.id}}" bindtap="ideaDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+          {{item.ideaTitle}}
+        </view>
+      </view>
+    </scroll-view>
   </view>
-  <scroll-view scroll-y="true" wx:for="{{ideaList}}" wx:key="{{item}}">
-  <view bindlongtap="editIdea" data-id="{{item.id}}"  bindtap="ideaDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
-  {{item.ideaTitle}}
-  </view>
-  </scroll-view>
 </view>
 <view class="addBtn">
   <image src="../../../images/icon/icon_add.png" bindtap="addIdea"></image>

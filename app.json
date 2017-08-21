@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/tags/index",
     "pages/themes/index",
+    "pages/tags/index",
     "pages/themes/addTheme/index",
     "pages/themes/editTheme/index",
     "pages/themes/themeDetail/index",
     "pages/tags/addTag/index",
     "pages/tags/editTag/index",
-    "pages/tags/tagDetail/index",
     "pages/ideas/index",
     "pages/ideas/addIdea/index",
     "pages/ideas/editIdea/index",

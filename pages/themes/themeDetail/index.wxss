@@ -1,3 +1,53 @@
+.container {
+  width: 100%;
+  position: absolute;
+  bottom: 0rpx;
+  background: rgba(229, 229, 229, 0.9);
+}
+
+.ideaContainer {
+  position: absolute;
+  top: 30rpx;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 30rpx;
+  border-radius: 10rpx;
+  background: white;
+  box-shadow: 7rpx 7rpx 3rpx rgba(224,224, 225, 0.8);
+}
+
+.ideaContainer scroll-view {
+  position: absolute;
+  top: 120rpx;
+  bottom: 0rpx;
+}
+
+.ideaListTitle {
+  height: 100rpx;
+  width: 90%;
+  position: absolute;
+  padding-left: 20rpx;
+  margin-left: 20rpx;
+  line-height: 100rpx;
+  font-size: 40rpx;
+  text-align: left;
+  border-bottom: 1rpx rgb(213, 213, 213) solid;
+  top: 0rpx;
+  color: rgb(76, 74, 84);
+}
+
+.ideaItem {
+  height: 70rpx;
+  width: 90%;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  line-height: 80rpx;
+  font-size: 45rpx;
+  color: rgb(121, 121, 121);
+  border-bottom: 1rpx rgb(213, 213, 213) solid;
+}
+
 .addBtn {
   width: 80rpx;
   height: 80rpx;

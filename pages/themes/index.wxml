@@ -3,7 +3,7 @@
     <image src="../../images/icon/icon_tag.png" mode="aspectFit"></image>
   </view>
   <scroll-view class="tagContent" scroll-x="true">
-    <view class="tagItem" wx:for="{{tagList}}" wx:for-item="tag" wx:key="tag.tagName" style="background:{{tag.tagColor}};">
+    <view class="tagItem" wx:for="{{tagList}}" wx:for-item="tag" wx:key="tag.tagName" style="background:{{tag.tagColor}};{{index==selectedTag? 'border:2rpx #767484 solid;font-size:40rpx;':''}}">
       <view bindtap="clickTag" data-id="{{index}}" style="{{tag.tagName=='所有标签'||tag.tagName=='无标签'? 'color:#767484;':''}}">{{tag.tagName}}</view>
     </view>
   </scroll-view>
@@ -18,7 +18,6 @@
     </view>
   </scroll-view>
 </view>
-
 <view class="addBtn">
-  <image src="../../images/icon/icon_add.png" bindtap="addTheme"></image>
+  <image src="../../images/icon/icon_add.png" bindtap="addMenu"></image>
 </view>

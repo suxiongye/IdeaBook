@@ -5,6 +5,7 @@ Page({
   data: {
     colorList: ['Blue', 'DarkOrange'],
     selectedColor: 0,
+    btnDisabled: true,
     tag: {
       tagColor: 'Blue',
     }
@@ -66,14 +67,44 @@ Page({
 
   },
   deleteTag: function (e) {
-    deleteTagById(this.data.tag.id)
-    wx.navigateBack()
+    var page = this
+    wx.showModal({
+      title: '删除标签',
+      content: '删除标签后不可恢复，是否确认删除',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '',
+      confirmText: '确定',
+      confirmColor: '',
+      success: function (res) {
+        if (res.confirm) {
+          deleteTagById(page.data.tag.id)
+          wx.navigateBack()
+        }
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
   /**
    * 设置标签名称
    */
   tagInput: function (e) {
+    var tagNameError = ""
+    var btnDisabled = false
+    if (!e.detail.value || e.detail.value == "") {
+      tagNameError = "标签名称不为空"
+      btnDisabled = true
+    }
+    else {
+      if (isTagNameConflict(this.data.oldTagName, e.detail.value)) {
+        tagNameError = "标签已存在"
+        btnDisabled = true
+      }
+    }
     this.setData({
+      tagNameError: tagNameError,
+      btnDisabled: btnDisabled,
       tag: {
         id: this.data.tag.id,
         tagName: e.detail.value,
@@ -117,6 +148,7 @@ function initTag(page, id) {
         console.log(item.id)
         page.setData({
           selectedColor: selectedColor,
+          oldTagName: item.tagName,
           tag: {
             tagName: item.tagName,
             tagColor: item.tagColor,
@@ -167,9 +199,9 @@ function deleteTagById(id) {
   //删除主题标签关系
   var theme_tag = wx.getStorageSync("theme_tag")
   data = []
-  if(theme_tag.length){
-    theme_tag.forEach((item)=>{
-      if(item.tagId != id){
+  if (theme_tag.length) {
+    theme_tag.forEach((item) => {
+      if (item.tagId != id) {
         data.push(item)
       }
     })
@@ -177,3 +209,20 @@ function deleteTagById(id) {
   wx.setStorageSync("theme_tag", data)
 }
 
+/**
+ * 判断是否重名
+ */
+function isTagNameConflict(oldName, newName) {
+  var conflict = false
+  if (oldName == newName) return conflict
+  var tags = wx.getStorageSync("tags")
+  if (tags.length) {
+    tags.forEach((item) => {
+      if (item.tagName == newName) {
+        conflict = true;
+        return conflict
+      }
+    })
+  }
+  return conflict
+}

@@ -1,16 +1,19 @@
 <form bindsubmit="addTag" bindreset="formReset">
-  <view>
-    <view>标签名</view>
-    <input name="tagName" placeholder="请输入标签名" bindinput="tagInput" />
+  <view class="tagTitleItem">
+    <view class="tagTitle">标签名</view>
+    <input class="tagTitleInput" placeholder="请输入标签名" bindinput="tagInput" />
+    <view wx:if="{{tagNameError}}" style="color:red; margin-top:10rpx;">{{tagNameError}}</view>
   </view>
-  <view>标签颜色</view>
-  <view>
-     <picker bindchange="colorPickerChange" value="{{selectedColor}}" range="{{colorList}}">
-      当前选择：<text style="color:{{colorList[selectedColor]}};">{{colorList[selectedColor]}}</text>
-    </picker>
+  <view class="tagTitleItem">
+    <view class="tagTitle">标签颜色</view>
+    <view class="tagColor" hover-class="tagColorHover">
+      <picker bindchange="colorPickerChange" value="{{selectedColor}}" range="{{colorList}}">
+        <view class="tagColorItem" hover-class="tagColorItemHover" style="color:{{colorList[selectedColor]}};">{{colorList[selectedColor]}}</view>
+      </picker>
+    </view>
   </view>
-  <view>
-    <button form-type="submit">Submit</button>
-    <button form-type="reset">Reset</button>
+  <view class="btnBar">
+    <button form-type="submit" class="submitBtn" hover-class="submitBtnHover" disabled="{{btnDisabled}}">Submit</button>
+    <button form-type="reset" class="resetBtn" hover-class="resetBtnHover">Reset</button>
   </view>
 </form>

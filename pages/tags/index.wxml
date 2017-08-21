@@ -1,20 +1,21 @@
 <view class="container">
-  标签列表
+  <view class="tagListTitle">标签列表</view>
   <scroll-view scroll-y="true">
-  <view wx:for="{{tagList}}" wx:for-item="tag">
-    <view style="color:{{tag.tagColor}};" bindlongtap="editTag" data-id="{{tag.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
-      {{tag.tagName}}</view>
-    <view class="{{tag.open? 'themeList_show': 'themeList_hd'}}">
-      <view wx:for="{{tag.themeList}}" wx:for-item="theme">
-        <view bindlongtap="deleteTheme" data-theme_id="{{theme.id}}" data-tag_id="{{tag.id}}">{{theme.themeName}}</view>
+    <view wx:for="{{tagList}}" wx:for-item="tag" style="background:{{tag.tagColor}};" class="tagName {{tag.open? 'tagName_show': 'tagName'}}">
+      <view bindlongtap="editTag" data-id="{{tag.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">
+        {{tag.tagName}}
       </view>
-      <picker bindchange="addTheme" value="{{index}}" range="{{themeList}}" range-key="themeName" data-id="{{tag.id}}">
-    <view class="picker">
-      增加主题
+      <view class="{{tag.open? 'themeList_show': 'themeList_hd'}}">
+        <view wx:for="{{tag.themeList}}" wx:for-item="theme">
+          <view bindlongtap="deleteTheme" data-theme_id="{{theme.id}}" data-tag_id="{{tag.id}}" class="themeItem">{{theme.themeName}}</view>
+        </view>
+        <view class="addTheme">
+          <picker bindchange="addTheme" value="{{index}}" range="{{themeList}}" range-key="themeName" data-id="{{tag.id}}">
+            增加主题
+          </picker>
+        </view>
+      </view>
     </view>
-  </picker>
-    </view>
-  </view>
   </scroll-view>
 </view>
 

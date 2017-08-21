@@ -45,6 +45,7 @@
 .themeList {
   width: 100%;
   position: absolute;
+  height: 900rpx;
   top: 130rpx;
   bottom: 0;
   padding: 10rpx;
@@ -57,9 +58,8 @@
   float: left;
   margin-left: 20rpx;
   margin-bottom: 20rpx;
+  margin-top: 10rpx;
   text-align: center;
-  left: 10rpx;
-  right: 40rpx;
   font-size: 40rpx; 
   font-weight: bolder;
   color: rgba(255, 24, 103, 1);
