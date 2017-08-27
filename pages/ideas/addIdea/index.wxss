@@ -120,15 +120,27 @@
   color: rgb(255, 24, 103);
 }
 
+.ideaRecTips {
+  font-size: 30rpx;
+  margin-left: 10rpx;
+  color: rgba(255, 24, 103, 0.6);
+}
+
 .ideaRecList {
   height: 100rpx;
-  border: 1rpx #000 solid;
   width: 65%;
+  background: rgba(214, 214, 214, 0.2);
   float: left;
 }
 
-.voiceIcon{
-  
+.voiceIcon {
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.voiceIcon image {
+  height: 100rpx;
+  width: 100rpx;
 }
 
 .ideaRecControl {
