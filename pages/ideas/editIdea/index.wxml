@@ -1,31 +1,40 @@
-<view>
-  笔记标题：
-  <input bindinput="titleChange" value="{{ideaTitle}}" /> 笔记内容：
-  <textarea bindinput="contentChange" value="{{ideaContent}}" /> 图片列表：
-  <view wx:for="{{ideaPicList}}">
-    <block>
-      <view>
-        <image src="{{item}}"></image>
-        <button bindtap="removePic" data-index="{{index}}">删除</button>
-      </view>
-    </block>
-  </view>
-  <view bindtap="choosePic">点击新增</view>
+<form bindsubmit="editIdea" bindreset="formReset" class="ideaForm">
   <view>
-    音频列表：
-    <view wx:for="{{ideaRecordList}}">
-      <view>音频{{index+1}}</view>
-      <view bindtap="play" data-id="{{item}}" wx:if="{{playing == false}}">点击播放</view>
-      <view bindtap="removeRec" data-id="{{item}}">移除</view>
+    <view class="ideaTitleItem">
+      <view class="ideaTitle">
+        标题{{titleError}}：
+      </view>
+      <view class="ideaTitleInput">
+        <input bindinput="titleChange" value="{{ideaTitle}}" />
+      </view>
     </view>
-    <view bindtap="pause" data-id="{{item}}" wx:if="{{playing == true}}">点击暂停</view>
-    <view bindtap="stop" data-id="{{item}}" wx:if="{{playing == true}}">点击停止</view>
-    <view wx:if="{{recording == false}}" bindtap="startRecord">
-      点击开始录音
+    <view class="ideaContentItem">
+      <view class="ideaContent">
+        内容：
+      </view>
+      <textarea bindinput="contentChange" maxlength="-1" class="ideaContentInput" value="{{ideaContent}}" />
     </view>
-    <view wx:if="{{recording == true}}" bindtap="stopRecord">
-      点击停止录音
+    <view class="ideaPicItem">
+      <view class="ideaPic" wx:if="{{!ideaPicList||ideaPicList.length==0}}">
+        图片：
+      </view>
+      <view class="ideaPic" wx:if="{{ideaPicList && ideaPicList.length>0}}">
+        图片(单击预览，长按删除)：
+      </view>
+      <scroll-view class="ideaPicList" scroll-x>
+        <view wx:if="{{!ideaPicList||ideaPicList.length==0}}" class="ideaPicTips"> 单击新增图片 =></view>
+        <view wx:if="{{!ideaPicList||ideaPicList.length==0}}" class="ideaPicTips"> 可左右滑动查看</view>
+        <view wx:for="{{ideaPicList}}" class="ideaPicListItem" bindlongtap="removePic" data-index="{{index}}">
+          <image src="{{item}}" mode="aspectFit" bindtap="previewImage" data-src="{{item}}" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd"></image>
+        </view>
+      </scroll-view>
+      <view class="weui-uploader__input-box addPicBtn">
+        <view class="weui-uploader__input" bindtap="choosePic"></view>
+      </view>
+    </view>
+    <view class="btnBar">
+      <button class="deleteBtn" hover-class="deleteBtnHover" data-id="{{id}}" bindtap="deleteIdea">删除</button>
+      <button form-type="submit" class="submitBtn" hover-class="submitBtnHover" disabled="{{disabled}}">Submit</button>
     </view>
   </view>
-  <button bindtap="editIdea">确认修改</button>
-</view>
+</form>

@@ -9,6 +9,9 @@
   </scroll-view>
 </view>
 <view class="container">
+  <view class="themeTips" wx:if="{{!themeList || themeList.length < 1}}">
+    点击右下角新增主题和标签，单击主题进入对应笔记列表，长按主题可进入编辑状态
+  </view>
   <scroll-view scroll-y="true" enable-back-to-top="true" class="themeList">
     <view wx:for="{{themeList}}" wx:key="{{item}}">
       <view class="themeBlock" data-id="{{item.id}}" bindlongtap="editTheme" bindtap="themeDetail" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">

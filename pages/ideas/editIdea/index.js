@@ -14,6 +14,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
+      disabled: false,
       recording: false,
       playing: false
     })
@@ -72,9 +73,27 @@ Page({
    * 更新修改信息
    */
   titleChange: function (e) {
+    if (!e.detail.value) {
+      this.setData({
+        titleError: "请输入标题",
+        disabled: true
+      })
+      return
+    }
     this.setData({
       ideaTitle: e.detail.value
     })
+    if (isNameExist(this.data.oldTitle, this.data.ideaTitle)) {
+      this.setData({
+        titleError: "(笔记标题已存在)",
+        disabled: true
+      })
+    } else {
+      this.setData({
+        titleError: "",
+        disabled: false
+      })
+    }
   },
   contentChange: function (e) {
     this.setData({
@@ -107,7 +126,6 @@ Page({
         page.setData({
           ideaPicList: data
         })
-        console.log(res.tempFilePaths)
       },
     })
   },
@@ -115,16 +133,26 @@ Page({
    * 根据下标删除图片
    */
   removePic: function (event) {
-    console.log(event.currentTarget.dataset.index)
-    var index = event.currentTarget.dataset.index
-    var data = []
-    for (var i = 0; i < this.data.ideaPicList.length; i++) {
-      if (i != index) {
-        data.push(this.data.ideaPicList[i])
+    var page = this
+    wx.showModal({
+      title: '删除图片',
+      content: '是否移除图片？',
+      success: function (res) {
+        if (res.confirm) {
+          var index = event.currentTarget.dataset.index
+          var data = []
+          for (var i = 0; i < page.data.ideaPicList.length; i++) {
+            if (i != index) {
+              data.push(page.data.ideaPicList[i])
+            }
+          }
+          page.setData({
+            ideaPicList: data
+          })
+        } else if (res.cancel) {
+
+        }
       }
-    }
-    this.setData({
-      ideaPicList: data
     })
   },
   /**
@@ -134,91 +162,44 @@ Page({
     updateIdea(this)
     wx.navigateBack()
   },
+
   /**
-    * 开始录音
-    */
-  startRecord: function () {
-    var that = this
-    var ideaRecordList = this.data.ideaRecordList
-    var data = []
-    this.setData({ recording: true })
-    wx.startRecord({
+   * 删除idea
+   */
+  deleteIdea: function (e) {
+    wx.showModal({
+      title: '删除笔记',
+      content: '是否移除笔记？',
       success: function (res) {
-        if (ideaRecordList && ideaRecordList.length) {
-          ideaRecordList.forEach((item) => {
-            data.push(item)
-          })
+        if (res.confirm) {
+          deleteIdea(e.currentTarget.dataset.id)
+          wx.navigateBack()
         }
-        data.push(res.tempFilePath)
-        that.setData({
-          ideaRecordList: data,
-        })
-      },
-      complete: function () {
-        that.setData({ recording: false })
-      },
-      fail: function (res) {
-        //录音失败
-        console.log("fail record")
       }
     })
   },
+
   /**
-   * 停止录音
-   */
-  stopRecord: function () {
-    wx.stopRecord()
+* 解决长按事件往下传递问题
+*/
+  bindTouchStart: function (e) {
+    this.touchStartTime = e.timeStamp
+  },
+  bindTouchEnd: function (e) {
+    this.touchEndTime = e.timeStamp
   },
   /**
-   * 移除录音
-   */
-  removeRec: function (event) {
-    var data = []
-    var recordList = this.data.ideaRecordList
-    recordList.forEach((item) => {
-      if (item != event.currentTarget.dataset.id) {
-        data.push(item)
-      }
-    })
-    this.setData({
-      ideaRecordList: data
-    })
+* 预览图片
+*/
+  previewImage: function (e) {
+    if (this.touchEndTime - this.touchStartTime < 350) {
+      var current = e.target.dataset.src
+      wx.previewImage({
+        current: current,
+        urls: this.data.ideaPicList
+      })
+    }
   },
-  /**
-   * 播放
-   */
-  play: function (event) {
-    var that = this
-    this.setData({
-      playing: true
-    })
-    wx.playVoice({
-      filePath: event.currentTarget.dataset.id,
-      success: function () {
-        that.setData({
-          playing: false,
-        })
-      }
-    })
-  },
-  /**
-   * 暂停
-   */
-  pause: function (event) {
-    wx.pauseVoice()
-    this.setData({
-      playing: false
-    })
-  },
-  /**
-   * 停止
-   */
-  stop: function (event) {
-    wx.stopVoice()
-    this.setData({
-      playing: false,
-    })
-  }
 })
 
 /**
@@ -235,7 +216,8 @@ function initIdeaById(page, id) {
           ideaContent: item.ideaContent,
           ideaPicList: item.ideaPicList,
           ideaRecordList: item.ideaRecordList,
-          themeId: item.themeId
+          themeId: item.themeId,
+          oldTitle: item.ideaTitle,
         })
       }
     })
@@ -256,4 +238,34 @@ function updateIdea(page) {
     data.push(item)
   })
   wx.setStorageSync("ideas", data)
+}
+
+/**
+ * 删除
+ */
+function deleteIdea(id) {
+  var ideas = wx.getStorageSync("ideas")
+  var data = []
+  ideas.forEach((item) => {
+    if (item.id != id) {
+      data.push(item)
+    }
+  })
+  wx.setStorageSync("ideas", data)
+}
+
+/**
+ * 判断名称是否重复
+ */
+function isNameExist(oldTitle, newTitle) {
+  if (oldTitle == newTitle) return false;
+  var tag = false;
+  var ideas = wx.getStorageSync("ideas")
+  ideas.forEach((item) => {
+    if (newTitle == item.ideaTitle) {
+      tag = true;
+      return tag;
+    }
+  })
+  return tag;
 }

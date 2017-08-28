@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    disabled: true,
   },
 
   /**
@@ -69,9 +69,27 @@ Page({
   },
 
   titleChange: function (event) {
+    if (!event.detail.value) {
+      this.setData({
+        titleError: "(请输入标题)",
+        disabled: true
+      })
+      return
+    }
     this.setData({
       ideaTitle: event.detail.value
     })
+    if (isNameExist(this)) {
+      this.setData({
+        titleError: "(笔记标题已存在)",
+        disabled: true
+      })
+    } else {
+      this.setData({
+        titleError: "",
+        disabled: false
+      })
+    }
   },
   contentChange: function (event) {
     this.setData({
@@ -116,8 +134,8 @@ Page({
     wx.showModal({
       title: '删除图片',
       content: '是否移除图片？',
-      success: function(res){
-        if(res.confirm){
+      success: function (res) {
+        if (res.confirm) {
           var index = event.currentTarget.dataset.index
           var data = []
           for (var i = 0; i < page.data.ideaPicList.length; i++) {
@@ -128,12 +146,23 @@ Page({
           page.setData({
             ideaPicList: data
           })
-        }else if(res.cancel){
-          
+        } else if (res.cancel) {
+
         }
       }
     })
-   
+  },
+  /**
+ * 预览图片
+ */
+  previewImage: function (e) {
+    if (this.touchEndTime - this.touchStartTime < 350) {
+      var current = e.target.dataset.src
+      wx.previewImage({
+        current: current,
+        urls: this.data.ideaPicList
+      })
+    }
   },
 
   /**
@@ -239,9 +268,20 @@ Page({
       ideaTitle: '',
       ideaContent: '',
       ideaPicList: '',
-      ideaRecordList: ''
+      ideaRecordList: '',
+      disabled: true,
+      titleError: ""
     })
     isLegal(this)
+  },
+  /**
+  * 解决长按事件往下传递问题
+  */
+  bindTouchStart: function (e) {
+    this.touchStartTime = e.timeStamp
+  },
+  bindTouchEnd: function (e) {
+    this.touchEndTime = e.timeStamp
   },
 })
 
@@ -260,4 +300,20 @@ function setIdea(page) {
   idea = { id: idea.id, ideaTitle: idea.ideaTitle, ideaContent: idea.ideaContent, ideaPicList: idea.ideaPicList, ideaRecordList: idea.ideaRecordList, themeId: idea.themeId }
   data.push(idea)
   wx.setStorageSync("ideas", data)
+}
+
+function isNameExist(page) {
+  var themeId = page.data.themeId
+  var ideaTitle = page.data.ideaTitle
+  var ideas = wx.getStorageSync("ideas")
+  var exist = false
+  if (ideas.length) {
+    ideas.forEach((item) => {
+      if (item.themeId == themeId && item.ideaTitle == ideaTitle) {
+        exist = true
+        return exist
+      }
+    })
+  }
+  return exist;
 }

@@ -112,7 +112,28 @@ Page({
     this.setData({
       playing: false,
     })
-  }
+  },
+  /**
+* 解决长按事件往下传递问题
+*/
+  bindTouchStart: function (e) {
+    this.touchStartTime = e.timeStamp
+  },
+  bindTouchEnd: function (e) {
+    this.touchEndTime = e.timeStamp
+  },
+  /**
+* 预览图片
+*/
+  previewImage: function (e) {
+    if (this.touchEndTime - this.touchStartTime < 350) {
+      var current = e.target.dataset.src
+      wx.previewImage({
+        current: current,
+        urls: this.data.ideaPicList
+      })
+    }
+  },
 })
 
 /**

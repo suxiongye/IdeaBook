@@ -14,7 +14,10 @@
   top: 0rpx;
   color: rgb(76, 74, 84);
 }
-
+.tagTips{
+  width: 70%;
+  line-height: 100rpx;
+}
 .tagName {
   line-height: 100rpx;
   width: 95%;

@@ -2,7 +2,7 @@
   <view>
     <view class="ideaTitleItem">
       <view class="ideaTitle">
-        标题：
+        标题{{titleError}}：
       </view>
       <view class="ideaTitleInput">
         <input bindinput="titleChange" />
@@ -25,47 +25,11 @@
         <view wx:if="{{!ideaPicList||ideaPicList.length==0}}" class="ideaPicTips"> 单击新增图片 =></view>
         <view wx:if="{{!ideaPicList||ideaPicList.length==0}}" class="ideaPicTips"> 可左右滑动查看</view>
         <view wx:for="{{ideaPicList}}" class="ideaPicListItem" bindlongtap="removePic" data-index="{{index}}">
-          <image src="{{item}}" mode="aspectFit"></image>
+          <image src="{{item}}" mode="aspectFit" bindtap="previewImage" data-src="{{item}}" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd"></image>
         </view>
       </scroll-view>
       <view class="weui-uploader__input-box addPicBtn">
         <view class="weui-uploader__input" bindtap="choosePic"></view>
-      </view>
-    </view>
-    <view class="ideaRecItem">
-      <view class="ideaRec" wx:if="{{!ideaRecordList||ideaRecordList.length==0}}">
-        音频：
-      </view>
-      <view class="ideaRec" wx:if="{{ideaRecordList&&ideaRecordList.length>0}}">
-        音频(单击播放，长按删除)：
-      </view>
-      <scroll-view class="ideaRecList" scroll-y>
-        <view class="ideaRecTips" wx:if="{{!ideaRecordList||ideaRecordList.length==0}}">
-          单击右边按钮进行录制音频 =>
-        </view>
-        <view class="ideaRecTips" wx:if="{{!ideaRecordList||ideaRecordList.length==0}}">
-          可上下滚动查看
-        </view>
-        <view wx:for="{{ideaRecordList}}" class="ideaRecListItem">
-          <view class="voiceIcon" data-id="{{item}}" bindlongtap="removeRec">
-            <image src="/images/icon/voice.png"></image>
-          </view>
-          <view bindtap="play" data-id="{{item}}" wx:if="{{playing == false}}">点击播放</view>
-        </view>
-      </scroll-view>
-      <view class="ideaRecControl">
-        <view bindtap="pause" data-id="{{item}}" wx:if="{{playing == true}}" class="ideaRecBtn" hover-class="ideaRecBtnHover">
-          <image src="/images/icon/pause.png" mode="aspectFit"></image>
-        </view>
-        <view bindtap="stop" data-id="{{item}}" wx:if="{{playing == true}}" class="ideaRecBtn" hover-class="ideaRecBtnHover">
-          <image src="/images/icon/stop.png" mode="aspectFit"></image>
-        </view>
-        <view wx:if="{{recording == false}}" bindtap="startRecord" class="ideaRecBtn" hover-class="ideaRecBtnHover">
-          <image src="/images/icon/record.png" mode="aspectFit"></image>
-        </view>
-        <view wx:if="{{recording == true}}" bindtap="stopRecord" class="ideaRecBtn" hover-class="ideaRecBtnHover">
-          <image src="/images/icon/stop.png" mode="aspectFit"></image>
-        </view>
       </view>
     </view>
     <view class="btnBar">

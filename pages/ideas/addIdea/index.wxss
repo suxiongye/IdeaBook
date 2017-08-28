@@ -59,7 +59,7 @@
 
 .ideaPicItem {
   width: 90%;
-  height: 270rpx;
+  height: 470rpx;
   margin: 0 auto;
   margin-top: 10rpx;
   padding: 10rpx;
@@ -74,7 +74,7 @@
 }
 
 .ideaPicList {
-  height: 200rpx;
+  height: 400rpx;
   width: 65%;
   float: left;
   background: rgba(214, 214, 214, 0.2);
@@ -94,7 +94,7 @@
 }
 
 .ideaPicListItem image {
-  max-height: 200rpx;
+  max-height: 400rpx;
   max-width: 100%;
   white-space: nowrap;
 }

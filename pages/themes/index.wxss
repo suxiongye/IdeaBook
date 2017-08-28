@@ -42,6 +42,10 @@
   opacity: 0.6;
 }
 
+.themeTips{
+  width: 50%;
+  line-height: 100rpx;
+}
 .themeList {
   width: 100%;
   position: absolute;

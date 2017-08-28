@@ -13,13 +13,21 @@
   bottom: 30rpx;
   border-radius: 10rpx;
   background: white;
-  box-shadow: 7rpx 7rpx 3rpx rgba(224,224, 225, 0.8);
+  box-shadow: 7rpx 7rpx 3rpx rgba(224, 224, 225, 0.8);
 }
 
 .ideaContainer scroll-view {
   position: absolute;
   top: 120rpx;
   bottom: 0rpx;
+}
+
+.ideaTips {
+  width: 70%;
+  position: absolute;
+  top: 120rpx;
+  left: 50rpx;
+  line-height: 100rpx;
 }
 
 .ideaListTitle {

@@ -1,5 +1,8 @@
 <view class="container">
   <view class="tagListTitle">标签列表</view>
+  <view class="tagTips" wx:if="{{!tagList||tagList.length < 1}}">
+    点击右下角新增标签，单击标签可展开对应主题，长按可进入编辑状态
+  </view>
   <scroll-view scroll-y="true">
     <view wx:for="{{tagList}}" wx:for-item="tag" style="background:{{tag.tagColor}};" class="tagName {{tag.open? 'tagName_show': 'tagName'}}">
       <view bindlongtap="editTag" data-id="{{tag.id}}" bindtap="clickTag" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd">

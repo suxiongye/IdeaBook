@@ -1,1 +1,72 @@
-/* pages/ideas/ideaDetail/index.wxss */
+.container {
+  width: 100%;
+  position: absolute;
+  bottom: 0rpx;
+  background: rgba(229, 229, 229, 0.9);
+}
+
+.ideaContainer {
+  position: absolute;
+  top: 30rpx;
+  left: 20rpx;
+  right: 20rpx;
+  bottom: 30rpx;
+  border-radius: 10rpx;
+  background: white;
+  text-align: center;
+  box-shadow: 7rpx 7rpx 3rpx rgba(224, 224, 225, 0.8);
+}
+
+.ideaContent {
+  width: 95%;
+  height: 520rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+}
+
+.ideaContent scroll-view {
+  height: 520rpx;
+  width: 100%;
+  padding-top: 20rpx;
+  text-align: left;
+}
+
+.ideaPicItem {
+  width: 95%;
+  height: 500rpx;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  padding: 10rpx;
+  padding-top: 30rpx;
+  border-top: 4rpx rgb(213, 213, 213) solid;
+}
+
+.ideaPic {
+  margin-top: 10rpx;
+  margin-bottom: 15rpx;
+  line-height: 30rpx;
+  font-weight: bolder;
+  color: rgb(255, 24, 103);
+}
+
+.ideaPicList {
+  height: 500rpx;
+  width: 100%;
+  float: left;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.ideaPicListItem {
+  max-height: 500rpx;
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.ideaPicListItem image {
+  max-height: 500rpx;
+  max-width: 100%;
+  white-space: nowrap;
+}
